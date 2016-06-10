@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Joe Kratzat</title>
+    <link>http://joekratzat.com/tags/java/</link>
+    <description>Recent content in Java on Joe Kratzat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Sep 2012 20:40:00 -0500</lastBuildDate>
+    <atom:link href="http://joekratzat.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Spring-ws SOAP &#39;No adapter for endpoint&#39;</title>
+      <link>http://joekratzat.com/blog/2012/spring-ws-soap-no-adapter-for-endpoint/</link>
+      <pubDate>Wed, 26 Sep 2012 20:40:00 -0500</pubDate>
+      
+      <guid>http://joekratzat.com/blog/2012/spring-ws-soap-no-adapter-for-endpoint/</guid>
+      <description>&lt;p&gt;Why am I using SOAP? I don&amp;rsquo;t want to talk about it. Basically I have a need for a Spring MVC project to provide a Spring-ws SOAP endpoint.
+After following the Spring documentation &lt;a href=&#34;http://static.springsource.org/spring-ws/sites/2.0/reference/html/tutorial.html#d5e190&#34;&gt;here&lt;/a&gt; and downloading the source code &lt;a href=&#34;http://static.springsource.org/spring-ws/sites/2.0/downloads/releases.html&#34;&gt;here&lt;/a&gt; I noticed something. The documentation is using jdom for marshalling. While the source code is using jdom2.&lt;/p&gt;
+
+&lt;p&gt;After struggling for a while I find out that using jdom, even with everything setup correctly, will result in the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&#39;java.lang.IllegalStateException: No adapter for endpoint&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This, I guess, is a &lt;a href=&#34;https://jira.springsource.org/browse/SWS-782?page=com.atlassian.jira.plugin.system.issuetabpanels:changehistory-tabpanel&#34;&gt;known issue&lt;/a&gt;. The thing to do is use jdom2, or something else like JAXB, Castor, etc.&lt;/p&gt;
+
+&lt;p&gt;I know documentation is hard to keep up-to-date. I just thought I should put something else out on the net incause others have the same issue.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

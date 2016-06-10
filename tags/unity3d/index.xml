@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unity3d on Joe Kratzat</title>
+    <link>http://joekratzat.com/tags/unity3d/</link>
+    <description>Recent content in Unity3d on Joe Kratzat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Apr 2011 21:54:00 -0500</lastBuildDate>
+    <atom:link href="http://joekratzat.com/tags/unity3d/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Unity3D and JSON parsing</title>
+      <link>http://joekratzat.com/blog/2011/unity3d-and-json-parsing/</link>
+      <pubDate>Thu, 21 Apr 2011 21:54:00 -0500</pubDate>
+      
+      <guid>http://joekratzat.com/blog/2011/unity3d-and-json-parsing/</guid>
+      <description>&lt;p&gt;Today I was working on a Unity3D web player project that requires pulling JSON from a remote server. I needed a way to parse the JSON string. After working with multiple JSON libraries (Jayrock being the main one) I found that LitJson worked well with in Unity once you had the DLL.
+I was unable to get Jayrock to work with Unity&amp;rsquo;s web player. Turns out that Unity desktop builds use a subset of the Mono SDK, which can be changed to use the full SDK. However, the web player can not be changed, limiting access to System.web which is needed by Jayrock.&lt;/p&gt;
+
+&lt;p&gt;While running ./configure it would output the following error message:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;configure: error: Please install mono version 1.1.17 or later
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I did confirm my mono version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Mono JIT compiler version 2.6.7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After using the Googles for a bit ran accross a post a link to download a zip file that had the DLL already built: Download &lt;a href=&#34;http://sourceforge.net/projects/litjson/files/litjson/0.5.0/litjson-0.5.0-bin.zip/download&#34;&gt;litjson-0.5.0-bin.zip (224.2 KB)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;With some code changes JsonMapper seems to be working and I&amp;rsquo;m able to parse the JSON.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List&amp;lt;LessonProgress&amp;gt; listOfLessonProgress = JsonMapper.ToObject&amp;lt;List&amp;lt;LessonProgress&amp;gt;&amp;gt;(www.text);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;What I was working with:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Unity3D version: 3.3.0f4&lt;/p&gt;
+
+&lt;p&gt;MonoDevelop version: 2.4.2&lt;/p&gt;
+
+&lt;p&gt;OS: OSX (10.6.7)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

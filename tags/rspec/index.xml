@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rspec on Joe Kratzat</title>
+    <link>http://joekratzat.com/tags/rspec/</link>
+    <description>Recent content in Rspec on Joe Kratzat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Mar 2013 21:02:00 -0500</lastBuildDate>
+    <atom:link href="http://joekratzat.com/tags/rspec/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Carrierwave, RSpec and FactoryGirl</title>
+      <link>http://joekratzat.com/blog/2013/carrierwave-rspec-and-factorygirl/</link>
+      <pubDate>Tue, 26 Mar 2013 21:02:00 -0500</pubDate>
+      
+      <guid>http://joekratzat.com/blog/2013/carrierwave-rspec-and-factorygirl/</guid>
+      <description>
+
+&lt;p&gt;As part of a project I wanted to run some rspec tests on a model that had many children models using &lt;a href=&#34;https://github.com/jnicklas/carrierwave&#34;&gt;Carrierwave&lt;/a&gt; to upload files to S3.&lt;/p&gt;
+
+&lt;p&gt;My models look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class User &amp;lt; ActiveRecord::Base
+    ...
+    has_many :images
+    ...
+end
+
+class Image &amp;lt; ActiveRecord::Base
+    ...
+    belongs_to :user
+
+    validates_presence_of :file
+    ...
+    mount_uploader :file, FileUploader
+    ...
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;In order to this I needd a few things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rspec Tests&lt;/li&gt;
+&lt;li&gt;Store files locally (not on S3)&lt;/li&gt;
+&lt;li&gt;Clean up locally created files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;creating-the-test-object&#34;&gt;Creating the test object&lt;/h1&gt;
+
+&lt;p&gt;To help create the test objects I use &lt;a href=&#34;https://github.com/thoughtbot/factory_girl&#34;&gt;FactoryGirl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;factory :user do
+    ...
+    after(:build) do |user, eval|
+        user.images &amp;lt;&amp;lt; FactoryGirl.build(:image, user: user)
+    end
+end
+
+factory :image do
+    user :user
+
+    file File.open(File.join(Rails.root, &#39;/spec/fixtures/files/image.png&#39;))
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In my user model spec I have the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;describe User do
+    it { should have_many :images }
+
+    before(:each){
+        @user = FactoryGirl.create(:user)
+    }
+
+    describe &amp;quot;images&amp;quot; do
+
+        it &amp;quot;should have multiple images&amp;quot; do
+
+            @user.images.create({document_file:File.open(File.join(Rails.root, &#39;/spec/fixtures/files/image.png&#39;))})
+            @user.images.create({document_file:File.open(File.join(Rails.root, &#39;/spec/fixtures/files/image.png&#39;))})
+
+
+            @user.images.length.should eq(3)
+        end
+    end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;store-local-for-test&#34;&gt;Store local for test&lt;/h1&gt;
+
+&lt;p&gt;In production and development I didn&amp;rsquo;t want Carrierwave to use S3 as the storage source. So in the &lt;code&gt;app/uploaders/file_uploader.rb&lt;/code&gt; file I removed the line &lt;code&gt;storage :fog&lt;/code&gt;. This is now being configured in a new &lt;code&gt;carrierwave.rb&lt;/code&gt; initalizer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;if Rails.env.test? or Rails.env.cucumber?
+  CarrierWave.configure do |config|
+    config.storage = :file
+    config.enable_processing = false
+  end
+else
+  CarrierWave.configure do |config|
+    config.storage = :fog
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;cleaning-up-files&#34;&gt;Cleaning up files&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+        @document.versions.each do |v|
+            store_path = File.dirname(File.dirname(v.document_file.url))
+            temp_path = v.document_file.cache_dir
+            FileUtils.rm_rf(Dir[&amp;quot;#{Rails.root}/public/#{store_path}/[^.]*&amp;quot;])
+            FileUtils.rm_rf(Dir[&amp;quot;#{temp_path}/[^.]*&amp;quot;])
+        end
+    end
+end
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

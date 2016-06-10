@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Editor on Joe Kratzat</title>
+    <link>http://joekratzat.com/tags/editor/</link>
+    <description>Recent content in Editor on Joe Kratzat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Apr 2014 20:35:00 -0500</lastBuildDate>
+    <atom:link href="http://joekratzat.com/tags/editor/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Theme Toggler: My first Atom package</title>
+      <link>http://joekratzat.com/blog/2014/theme-toggler-my-first-atom-package/</link>
+      <pubDate>Sun, 20 Apr 2014 20:35:00 -0500</pubDate>
+      
+      <guid>http://joekratzat.com/blog/2014/theme-toggler-my-first-atom-package/</guid>
+      <description>&lt;p&gt;Lately, I have been using the &lt;a href=&#34;http://Atom.io&#34;&gt;Atom&lt;/a&gt; editor. I really like working with it. The custom packages and themes make it very nice. My only issue has been that dark themes are terrible to work with while outside, and light themes are too bright inside.&lt;/p&gt;
+
+&lt;p&gt;I know there are two great theme changing packages already: &lt;a href=&#34;https://atom.io/packages/outdoor-theme&#34;&gt;Outdoor Theme&lt;/a&gt;, and &lt;a href=&#34;https://atom.io/packages/theme-switcher&#34;&gt;Theme Switcher&lt;/a&gt;, but neither gave me quite what I wanted.&lt;/p&gt;
+
+&lt;p&gt;Since Atom makes it easy to generate and distribute packages I went ahead and created &lt;a href=&#34;https://atom.io/packages/theme-toggler&#34;&gt;Theme Toggler&lt;/a&gt;. It is very basic. It toggles between a dark and light theme using &lt;code&gt;ctrl + alt + t&lt;/code&gt;. The one thing it does different from Theme Switcher is changing the UI theme as well as the Syntax theme. I like to keep the UI consistent with the Syntax, but if you don&amp;rsquo;t you can use the settings to easily override my preferences.&lt;/p&gt;
+
+&lt;p&gt;Anyway, that was my motivation for creating Theme Toggler. Well, that and I have wanted to make a package for a while. I hope to write up in more detail just how to create a package. Until then Atom has some great documentation on this &lt;a href=&#34;https://atom.io/docs/latest/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

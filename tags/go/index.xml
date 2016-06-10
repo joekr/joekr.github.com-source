@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Joe Kratzat</title>
+    <link>http://joekratzat.com/tags/go/</link>
+    <description>Recent content in Go on Joe Kratzat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Jun 2016 02:10:00 -0500</lastBuildDate>
+    <atom:link href="http://joekratzat.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go Hugo</title>
+      <link>http://joekratzat.com/blog/2016/go-hugo/</link>
+      <pubDate>Fri, 10 Jun 2016 02:10:00 -0500</pubDate>
+      
+      <guid>http://joekratzat.com/blog/2016/go-hugo/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been working a lot with &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; lately, and clearly I don&amp;rsquo;t blog at all. My last post was 2014. So I decided to upgrade my blog to use &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; in hopes to get my involved once more.&lt;/p&gt;
+
+&lt;p&gt;Mainly this is a test to make sure my deployment works well. Because let&amp;rsquo;s be honest, if deployment becomes a pain I won&amp;rsquo;t do it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
